@@ -1,5 +1,6 @@
 package com.acme.tour.service.impl
 
+import com.acme.tour.exception.PromotionNotFoundException
 import com.acme.tour.model.Promotion
 import com.acme.tour.repository.PromotionRepository
 import com.acme.tour.service.PromotionService
@@ -29,7 +30,8 @@ class PromotionServiceImpl(private val promotionRepository: PromotionRepository)
     }
 
     override fun update(id: Long, promotion: Promotion) {
-        val promotionModel = this.findById(id)
+        val promotionModel = this.findById(id) ?: throw PromotionNotFoundException("Identifier $id not exists")
+
         val promotionUpdate = promotionModel.copy(
                 description = promotion.description,
                 locale = promotion.locale,
