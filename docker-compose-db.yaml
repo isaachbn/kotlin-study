@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+
+  db:
+    image: library/mariadb:10.5.7-focal
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_PASSWORD: dev
+      MYSQL_USER: dev
+      MYSQL_DATABASE: tour
+    ports:
+    - published: 3306
+      target: 3306

@@ -1,0 +1,2 @@
+INSERT INTO promotions(description, locale, all_inclusive, count_days, price) VALUES ("Travel Cancún",  "Cancún", true, 15, 35460.84)
+INSERT INTO promotions(description, locale, all_inclusive, count_days, price) VALUES ("Travel New York",  "New York", false, 7, 25460.84)
