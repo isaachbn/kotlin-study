@@ -5,7 +5,6 @@ import com.acme.tour.model.Promotion
 import com.acme.tour.repository.PromotionRepository
 import com.acme.tour.service.PromotionService
 import org.springframework.cache.annotation.CacheEvict
-import org.springframework.cache.annotation.CachePut
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
@@ -21,6 +20,7 @@ class PromotionServiceImpl(private val promotionRepository: PromotionRepository)
 
     override fun findById(id: Long) = this.promotionRepository.findById(id).orElse(null)
 
+    @CacheEvict(cacheManager = "cachemanager", cacheNames = ["promotions_find_by_locale"], allEntries = true)
     override fun create(promotion: Promotion) {
         this.promotionRepository.save(promotion)
     }

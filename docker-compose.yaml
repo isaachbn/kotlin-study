@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      DB_HOST: db
+    depends_on:
+      - db
+    ports:
+    - published: 8080
+      target: 8080
+    command: ["/bin/wait-for-it.sh", "db:3306"]
+
+  db:
+    image: library/mariadb:10.5.7-focal
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_PASSWORD: dev
+      MYSQL_USER: dev
+      MYSQL_DATABASE: tour
+    ports:
+    - published: 3306
+      target: 3306

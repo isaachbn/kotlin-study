@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: "jdbc:mariadb://${DB_HOST:localhost}:3306/tour"
+    username: dev
+    password: dev
+    initialization-mode: always
+  redis:
+    host: localhost
+    port: 6379
+  cache:
+    type: redis
+    redis:
+      key-prefix: tour_
+      use-key-prefix: true
+      cache-null-values: true
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
